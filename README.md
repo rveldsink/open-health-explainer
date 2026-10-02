@@ -95,6 +95,23 @@ Example idea for a large import:
 
 This makes the project useful not only as a validator frontend, but as an error-intelligence layer for interface and migration testing.
 
+## Provider-neutral connectors
+
+The analysis engine is intentionally vendor-neutral.
+
+Current prototype sources:
+- local FHIR JSON files and Bundles
+- generic read-only FHIR REST endpoint
+
+Example:
+
+```bash
+python -m ohe.cli source examples/ --type folder
+python -m ohe.cli source https://example-fhir-server/fhir --type fhir-rest --resource-type Patient --limit 1000
+```
+
+This is the foundation for future connectors to HAPI FHIR, Firely, Oracle Health, Epic and other healthcare integration platforms.
+
 ## Integration roadmap
 
 The first prototype intentionally works with local files and folders. This keeps testing simple, reproducible and privacy-friendly.
