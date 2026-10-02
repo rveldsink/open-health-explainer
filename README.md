@@ -7,6 +7,14 @@ Open-source prototype for reproducible analysis of HL7 FHIR validation failures.
 **Project start:** October 2026  
 **Development:** AI-assisted, with human review and responsibility.
 
+## In one sentence
+
+> Everyone builds their own FHIR interface. We help make sure the right ingredients are there and everything fits together in the end.
+
+Or, less technically:
+
+> Everyone cooks their own soup — we help make sure the right ingredients go in.
+
 ## Why this project exists
 
 The official HL7 FHIR Validator is authoritative and technically powerful.
