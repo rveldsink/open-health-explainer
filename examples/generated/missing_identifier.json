@@ -1,0 +1,14 @@
+{
+  "resourceType": "Patient",
+  "id": "synthetic-001",
+  "active": true,
+  "name": [
+    {
+      "use": "official",
+      "family": "Muster",
+      "given": ["Anna"]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1965-11-23"
+}
