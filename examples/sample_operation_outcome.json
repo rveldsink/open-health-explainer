@@ -1,0 +1,17 @@
+{
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "structure",
+      "diagnostics": "Patient.identifier: minimum required = 1, but only found 0",
+      "expression": ["Patient.identifier"]
+    },
+    {
+      "severity": "error",
+      "code": "value",
+      "diagnostics": "MedicationRequest.medication: code is not in the value set",
+      "expression": ["MedicationRequest.medication"]
+    }
+  ]
+}
