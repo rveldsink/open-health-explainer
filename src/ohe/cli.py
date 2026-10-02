@@ -6,6 +6,7 @@ from .batch import analyze_directory
 from .explainer import explain
 from .precheck import inspect_file
 from .validator_runner import run_validator, parse_operation_outcome_json
+from .sources import LocalFolderSource, FhirRestSource, summarize_source
 
 
 def analyze_operation_outcome(path: str):
@@ -48,6 +49,12 @@ def main():
     batch_p = subs.add_parser("batch")
     batch_p.add_argument("directory")
 
+    source_p = subs.add_parser("source")
+    source_p.add_argument("location")
+    source_p.add_argument("--type", choices=["folder", "fhir-rest"], default="folder")
+    source_p.add_argument("--resource-type", default="Patient")
+    source_p.add_argument("--limit", type=int)
+
     args = parser.parse_args()
 
     if args.cmd == "explain":
@@ -72,6 +79,19 @@ def main():
 
     if args.cmd == "batch":
         print(json.dumps(analyze_directory(args.directory), indent=2, ensure_ascii=False))
+        return
+
+    if args.cmd == "source":
+        if args.type == "folder":
+            source = LocalFolderSource(args.location)
+        else:
+            source = FhirRestSource(args.location, resource_type=args.resource_type)
+
+        print(json.dumps(
+            summarize_source(source, limit=args.limit),
+            indent=2,
+            ensure_ascii=False
+        ))
         return
 
 
