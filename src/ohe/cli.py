@@ -2,7 +2,9 @@ import argparse
 import json
 from pathlib import Path
 
+from .batch import analyze_directory
 from .explainer import explain
+from .precheck import inspect_file
 from .validator_runner import run_validator, parse_operation_outcome_json
 
 
@@ -40,6 +42,12 @@ def main():
     analyze_p = subs.add_parser("analyze")
     analyze_p.add_argument("operation_outcome")
 
+    precheck_p = subs.add_parser("precheck")
+    precheck_p.add_argument("file")
+
+    batch_p = subs.add_parser("batch")
+    batch_p.add_argument("directory")
+
     args = parser.parse_args()
 
     if args.cmd == "explain":
@@ -56,6 +64,14 @@ def main():
 
     if args.cmd == "analyze":
         print(json.dumps(analyze_operation_outcome(args.operation_outcome), indent=2, ensure_ascii=False))
+        return
+
+    if args.cmd == "precheck":
+        print(json.dumps(inspect_file(args.file), indent=2, ensure_ascii=False))
+        return
+
+    if args.cmd == "batch":
+        print(json.dumps(analyze_directory(args.directory), indent=2, ensure_ascii=False))
         return
 
 
