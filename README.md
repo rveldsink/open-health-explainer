@@ -25,7 +25,17 @@ This project experiments with two complementary ideas:
 1. Normalize validator output into stable error classes with human-readable explanations.
 2. Generate deliberate negative test cases from profile rules, starting with simple, deterministic rule classes such as cardinality, required bindings and fixed values.
 
-## v0.2 scope
+## Current scope
+
+Open Health Explainer now has three layers:
+
+1. **Pre-validation** — encoding, BOM, control characters, malformed JSON, SHA-256 fingerprinting.
+2. **FHIR validation explanation** — normalize and explain official validator output.
+3. **Batch/error clustering** — scan many JSON resources and collapse repeated technical failures into error families.
+
+The goal is not to show developers 50,000 almost identical errors. The goal is to help them see that those 50,000 symptoms may come from only a few systematic root causes.
+
+## v0.3 prototype scope
 
 - deterministic error catalogue
 - stable OHE error IDs
@@ -58,6 +68,32 @@ Run the official validator when validator_cli.jar is available:
 ```bash
 python -m ohe.cli validate examples/generated/missing_identifier.json --validator ./validator_cli.jar
 ```
+
+Pre-check one file:
+
+```bash
+python -m ohe.cli precheck examples/patient_valid_synthetic.json
+```
+
+Scan a directory and cluster repeated technical errors:
+
+```bash
+python -m ohe.cli batch examples/
+```
+
+Example idea for a large import:
+
+```text
+48,312 validation issues
+4 recurring error families
+
+31,442  date conversion / Patient.birthDate
+ 9,814  character encoding damage
+ 6,921  missing mandatory identifier
+   135  invalid terminology code
+```
+
+This makes the project useful not only as a validator frontend, but as an error-intelligence layer for interface and migration testing.
 
 ## Important
 
