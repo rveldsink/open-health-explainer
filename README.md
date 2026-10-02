@@ -9,11 +9,11 @@ Open-source prototype for reproducible analysis of HL7 FHIR validation failures.
 
 ## In one sentence
 
-> Everyone builds their own FHIR interface. We help make sure the right ingredients are there and everything fits together in the end.
+> Everyone builds their own FHIR interface. We help make sure the right ingredients are used, so the final result is consistent and interoperable across Europe.
 
 Or, less technically:
 
-> Everyone cooks their own soup — we help make sure the right ingredients go in.
+> Everyone cooks their own soup — we help make sure the right ingredients go in, so in the end the soup tastes the same everywhere, just as European interoperability intends.
 
 ## Why this project exists
 
