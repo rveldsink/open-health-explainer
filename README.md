@@ -95,6 +95,32 @@ Example idea for a large import:
 
 This makes the project useful not only as a validator frontend, but as an error-intelligence layer for interface and migration testing.
 
+## Integration roadmap
+
+The first prototype intentionally works with local files and folders. This keeps testing simple, reproducible and privacy-friendly.
+
+Later versions can add connectors for systems that already manage FHIR or structured healthcare data, for example:
+
+- HAPI FHIR JPA Server
+- Firely Server
+- PostgreSQL / JSONB
+- FHIR REST endpoints
+- local export folders and ZIP archives
+
+The long-term flow is:
+
+```text
+Files / FHIR Server / Database Export
+              |
+              v
+   Open Health Explainer
+              |
+              v
+Pre-check -> FHIR validation -> error clustering -> root-cause report
+```
+
+The goal is that organizations can analyze large datasets directly from their existing infrastructure without manually inspecting thousands of individual validation errors.
+
 ## Important
 
 This is an experimental developer tool, not a medical device and not an official HL7 product.
