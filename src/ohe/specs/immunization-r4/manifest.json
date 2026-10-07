@@ -1,0 +1,19 @@
+{
+  "id": "immunization-r4",
+  "resourceType": "ImmunizationRecommendation",
+  "label": "ImmunizationRecommendation \u00b7 R4 4.0.1",
+  "package": "hl7.fhir.r4.core#4.0.1",
+  "fhir": "4.0.1",
+  "profile": "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation|4.0.1",
+  "source": "https://hl7.org/fhir/R4/immunizationrecommendation.html",
+  "validatorVersion": "6.10.4",
+  "validatorSha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
+  "files": [
+    {
+      "file": "StructureDefinition-ImmunizationRecommendation.json",
+      "sha256": "351c9d3130d0b4e5c17af97384a312d06adb22b0fd2fbd11044198abae3619ff",
+      "url": "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
+      "version": "4.0.1"
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "profile": "http://ig.fhir.de/igs/medication/StructureDefinition/MedicationRequestDgMP|1.0.7",
+  "profile_package": "de.fhir.medication#1.0.7",
+  "algorithm": "1.0.2",
+  "source_example": "medication\\package\\example\\MedicationRequest-Example-MR-Dosage-UnitStueck-1020.json",
+  "source_sha256": "fab938cba2d6b1263cf9a38c4ff0d3ea55ac86d4e1ee98cf94c760eefff2a906",
+  "scope": "Synthetic structured dosage; not full KBV prescription, not clinical safety assessment. Error expectations are targeted hypotheses; missing terminology is not counted as mutation detection.",
+  "cases": [
+    {
+      "id": "00-reference",
+      "category": "control",
+      "expected": "no-target-violation",
+      "rule": "MedicationRequestDgMP 1.0.7; algorithm 1.0.2",
+      "input": "medication-corpus/00-reference.json",
+      "sha256": "c93e337e2b7ccbd68d492ae2f40490513ddf717efbafe129569545a2c25e0866",
+      "studyInput": "experiment\\cases\\00-reference.json"
+    },
+    {
+      "id": "01-permuted",
+      "category": "metamorphic",
+      "expected": "same-text",
+      "rule": "Order-independent daily schedule",
+      "input": "medication-corpus/01-permuted.json",
+      "sha256": "2e25b33719c0c4bf306099dca6e1bde880d9e856c5ccb00dec99cd40eea8ee95",
+      "studyInput": "experiment\\cases\\01-permuted.json"
+    },
+    {
+      "id": "02-stale-rendered",
+      "category": "text-consistency",
+      "expected": "text-mismatch",
+      "rule": "Text derivation; additional check, not a new FHIR invariant",
+      "input": "medication-corpus/02-stale-rendered.json",
+      "sha256": "581b752ca5900d4880ee915e95d8d2c1c22526531ac4cf7d1a190ad102610feb",
+      "studyInput": "experiment\\cases\\02-stale-rendered.json"
+    },
+    {
+      "id": "03-dose-changed",
+      "category": "text-consistency",
+      "expected": "text-mismatch",
+      "rule": "Text derivation",
+      "input": "medication-corpus/03-dose-changed.json",
+      "sha256": "ed4cddd45fb689d09df88a4654f5783789759cb44ed4a0046d20d8c04e70aa53",
+      "studyInput": "experiment\\cases\\03-dose-changed.json"
+    },
+    {
+      "id": "04-frequency",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "TimingFrequencyCount",
+      "input": "medication-corpus/04-frequency.json",
+      "sha256": "73c5d6e33752981bb551254ca961b7ad2c6759c899a25f57607235a6828dbdbc",
+      "studyInput": "experiment\\cases\\04-frequency.json"
+    },
+    {
+      "id": "05-when-and-time",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "tim-10",
+      "input": "medication-corpus/05-when-and-time.json",
+      "sha256": "188bfa7c1f763794b050bfe944f2013d017b2ea1b063ece81d4da1ed9d9525a8",
+      "studyInput": "experiment\\cases\\05-when-and-time.json"
+    },
+    {
+      "id": "06-duplicate-slot",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "TimingOnlyOneWhen",
+      "input": "medication-corpus/06-duplicate-slot.json",
+      "sha256": "c74de98ceb41c19d1bd7c969ad14b1fda36f0d26f1b29dbe9eb45de8d148bb61",
+      "studyInput": "experiment\\cases\\06-duplicate-slot.json"
+    },
+    {
+      "id": "07-no-dose",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "DosageStructuredRequiresBoth",
+      "input": "medication-corpus/07-no-dose.json",
+      "sha256": "31d7d57577c0c5786ba218c67a911ec6d96b57cc86595481dfa26e02bdf2a84a",
+      "studyInput": "experiment\\cases\\07-no-dose.json"
+    },
+    {
+      "id": "08-no-timing",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "DosageStructuredRequiresBoth",
+      "input": "medication-corpus/08-no-timing.json",
+      "sha256": "ca6580ecf6fe34d796b3b06761b53274f101fa1c49901cf9df5100bc578cfdcc",
+      "studyInput": "experiment\\cases\\08-no-timing.json"
+    },
+    {
+      "id": "09-mixed-text",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "DosageStructuredOrFreeText",
+      "input": "medication-corpus/09-mixed-text.json",
+      "sha256": "43f9feead71751e6d2e3f3a1cb2793d13ce10afb973ef6254b416dcded418e90",
+      "studyInput": "experiment\\cases\\09-mixed-text.json"
+    },
+    {
+      "id": "10-no-rendered",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "DosageStructuredRequiresGeneratedText",
+      "input": "medication-corpus/10-no-rendered.json",
+      "sha256": "8808ccdc8052b1e94be1f494ffec23a537062534b0bf12950504e29d058afcbd",
+      "studyInput": "experiment\\cases\\10-no-rendered.json"
+    },
+    {
+      "id": "11-no-metadata",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "DosageStructuredRequiresGeneratedText",
+      "input": "medication-corpus/11-no-metadata.json",
+      "sha256": "afbf1a4c3b74307a2922951c316eec90d1d6ebfa45eadd8cf6b5c9d2a70fb19c",
+      "studyInput": "experiment\\cases\\11-no-metadata.json"
+    },
+    {
+      "id": "12-no-version",
+      "category": "cardinality",
+      "expected": "error",
+      "rule": "GeneratedDosageInstructionsMeta.algorithmVersion min=1",
+      "input": "medication-corpus/12-no-version.json",
+      "sha256": "a831140068f59e4a24b0b41ef438c4755a7035f905c4479a367357286aa6aea7",
+      "studyInput": "experiment\\cases\\12-no-version.json"
+    },
+    {
+      "id": "13-future-version",
+      "category": "configuration",
+      "expected": "unsupported-algorithm",
+      "rule": "Version dispatch; additional check",
+      "input": "medication-corpus/13-future-version.json",
+      "sha256": "9ec4ae997aa9707709cb0b0890194766aded33c12dab9b0bd900157ef42d982c",
+      "studyInput": "experiment\\cases\\13-future-version.json"
+    },
+    {
+      "id": "14-route",
+      "category": "cardinality",
+      "expected": "error",
+      "rule": "DosageDgMP.route max=0",
+      "input": "medication-corpus/14-route.json",
+      "sha256": "128bca00aab0b515b6ea14c0edcc2e7a19c2317d1b56b72ff2f1e3b55f038bcb",
+      "studyInput": "experiment\\cases\\14-route.json"
+    },
+    {
+      "id": "15-as-needed",
+      "category": "cardinality",
+      "expected": "error",
+      "rule": "DosageDgMP.asNeeded[x] max=0 in 1.0.7",
+      "input": "medication-corpus/15-as-needed.json",
+      "sha256": "306892288949cfa349e7dba75f51414c01e4732a416456ff4e398c996f2ede46",
+      "studyInput": "experiment\\cases\\15-as-needed.json"
+    },
+    {
+      "id": "16-patient-instruction",
+      "category": "cardinality",
+      "expected": "error",
+      "rule": "DosageDgMP.patientInstruction max=0",
+      "input": "medication-corpus/16-patient-instruction.json",
+      "sha256": "8c854c5727d570d55d007a171e40ad8f2c4dedf7cd20aa5b34b5f0758910fed0",
+      "studyInput": "experiment\\cases\\16-patient-instruction.json"
+    },
+    {
+      "id": "17-dose-unit-missing",
+      "category": "cardinality",
+      "expected": "error",
+      "rule": "DosageDgMP doseQuantity.unit min=1",
+      "input": "medication-corpus/17-dose-unit-missing.json",
+      "sha256": "7399345031528a0838c98de14bc0c71c59c2cc06a9284000d110505598636a27",
+      "studyInput": "experiment\\cases\\17-dose-unit-missing.json"
+    },
+    {
+      "id": "18-dose-code-missing",
+      "category": "cardinality",
+      "expected": "error",
+      "rule": "DosageDgMP doseQuantity.code min=1",
+      "input": "medication-corpus/18-dose-code-missing.json",
+      "sha256": "4d717f656b4a884e6651885b6aa0411eb4adcacc427fb40feec6f515469cdf75",
+      "studyInput": "experiment\\cases\\18-dose-code-missing.json"
+    },
+    {
+      "id": "19-unknown-dose-code",
+      "category": "terminology",
+      "expected": "requires-terminology",
+      "rule": "KBV_VS_SFHIR_BMP_DOSIEREINHEIT required binding",
+      "input": "medication-corpus/19-unknown-dose-code.json",
+      "sha256": "94af366139056a9b4d3d9bf095e88fb558afd62893ff90323135c8f4c395619a",
+      "studyInput": "experiment\\cases\\19-unknown-dose-code.json"
+    },
+    {
+      "id": "20-no-status",
+      "category": "cardinality",
+      "expected": "error",
+      "rule": "MedicationRequest.status min=1",
+      "input": "medication-corpus/20-no-status.json",
+      "sha256": "57733e6a26268f29a88a3791f79c33390cd86f108870c0db720ebd9511f5c609",
+      "studyInput": "experiment\\cases\\20-no-status.json"
+    },
+    {
+      "id": "21-wrong-status",
+      "category": "terminology",
+      "expected": "error",
+      "rule": "MedicationRequest.status required base binding",
+      "input": "medication-corpus/21-wrong-status.json",
+      "sha256": "bc1c82114fed95ec746f3ec40d0fac88054ffbb7004d91c0d6a25a44ae2d632c",
+      "studyInput": "experiment\\cases\\21-wrong-status.json"
+    },
+    {
+      "id": "22-unknown-profile",
+      "category": "configuration",
+      "expected": "coverage-gap",
+      "rule": "Unresolvable additional claimed profile",
+      "input": "medication-corpus/22-unknown-profile.json",
+      "sha256": "9548dcfb2a4ecda3de636efa31c44ca2b90affdf81c81228f1c9380382ef1171",
+      "studyInput": "experiment\\cases\\22-unknown-profile.json"
+    },
+    {
+      "id": "23-period-unit",
+      "category": "invariant",
+      "expected": "error",
+      "rule": "TimingPeriodUnit",
+      "input": "medication-corpus/23-period-unit.json",
+      "sha256": "113a8d859295e43e5be52061f2c3f656d7aa75b065492b188add8a49ec01e471",
+      "studyInput": "experiment\\cases\\23-period-unit.json"
+    },
+    {
+      "id": "24-corrected-dose",
+      "category": "repair",
+      "expected": "text-match",
+      "rule": "Repair of case 03: rendered text matches changed dose",
+      "input": "medication-corpus/24-corrected-dose.json",
+      "sha256": "f7355a5e88eb903f448b720c5fd46f15cd557cdb10dc3ef7ed094370a5b2280e",
+      "studyInput": "experiment\\cases\\24-corrected-dose.json"
+    },
+    {
+      "id": "25-unknown-code-both",
+      "category": "terminology-control",
+      "expected": "requires-terminology",
+      "rule": "Follow-up to case 19: change both codes to isolate terminology from DosageDoseUnitSameCode",
+      "input": "medication-corpus/25-unknown-code-both.json",
+      "sha256": "a24270e147a474cb178a9f508c82d58230be79d28e6c30cb7b60ea79ebe0f93c",
+      "studyInput": "experiment\\cases\\25-unknown-code-both.json"
+    }
+  ]
+}

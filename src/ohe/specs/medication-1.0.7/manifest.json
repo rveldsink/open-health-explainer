@@ -1,0 +1,123 @@
+{
+  "id": "de-medication-1.0.7",
+  "package": "de.fhir.medication#1.0.7",
+  "fhir": "4.0.1",
+  "profile": "http://ig.fhir.de/igs/medication/StructureDefinition/MedicationRequestDgMP|1.0.7",
+  "source": "https://ig.fhir.de/igs/medication/1.0.7/",
+  "validatorVersion": "6.10.4",
+  "validatorSha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
+  "files": [
+    {
+      "file": "KBV_CS_SFHIR_BMP_DOSIEREINHEIT_V1.01.json",
+      "sha256": "9d80d3c651a82e18cd1b45d6ada55320f5be881bba452f9a24d85b6536c8723c",
+      "url": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+      "version": "1.01"
+    },
+    {
+      "file": "KBV_VS_SFHIR_BMP_DOSIEREINHEIT_V1.01.json",
+      "sha256": "e33fd503f12ae7d926d4c194cd70527b221a079ed14a4ec907ad5652daa22e2a",
+      "url": "https://fhir.kbv.de/ValueSet/KBV_VS_SFHIR_BMP_DOSIEREINHEIT",
+      "version": "1.01"
+    },
+    {
+      "file": "rendered-extension.json",
+      "sha256": "b94d41310f378eac07e50a9ced3674ba05d00344adf21596cf3357415d9ba18c",
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+      "version": "0.0.1-snapshot-2"
+    },
+    {
+      "file": "StructureDefinition-DosageDE.json",
+      "sha256": "b246975529517bf4f1b135fb431f9427336881d8b414f52aae7ca19d80b3a303",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/DosageDE",
+      "version": "1.0.7"
+    },
+    {
+      "file": "StructureDefinition-DosageDgMP.json",
+      "sha256": "d08eefd864d2aed6bf73cce1cefd2c028146b3adeff4cc491b5b5fe210dc1967",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/DosageDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "StructureDefinition-GeneratedDosageInstructionsMeta.json",
+      "sha256": "eff05ebf1fb671012ffb3ea1e78b83fb8793f6a721e6f3e75ac7508e422971e9",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta",
+      "version": "1.0.7"
+    },
+    {
+      "file": "StructureDefinition-MedicationDispenseDgMP.json",
+      "sha256": "b0b7063f5c6d21debc8f8dc21dc246820539bda022544054d7aea190e2d02295",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/MedicationDispenseDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "StructureDefinition-MedicationRequestDgMP.json",
+      "sha256": "8b02fd60d179077e576bde1aa271b50a317011008d7deb81ff89ce8da98ff6cf",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/MedicationRequestDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "StructureDefinition-MedicationStatementDgMP.json",
+      "sha256": "36cdd75650a0a65f5893ed7d8388a968239d51a7f72e3e1616772a8c858ef7d9",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/MedicationStatementDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "StructureDefinition-TimingDE.json",
+      "sha256": "f5b0171552dcb39d2b6db16ff024a5bff6ac6806476c26279752113533d82a17",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/TimingDE",
+      "version": "1.0.7"
+    },
+    {
+      "file": "StructureDefinition-TimingDgMP.json",
+      "sha256": "076272fbeb6a2e02fcfe7b2acc8bb901ea2bb14aebd3fb5e6eaedd5ea0f2bfd3",
+      "url": "http://ig.fhir.de/igs/medication/StructureDefinition/TimingDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "ValueSet-AlgorithmLanguageCodesDgMP.json",
+      "sha256": "0df8a92a71e0eae34ab4e0d23bc48c09912bfdb25ea123c610e4b71ce3f70b30",
+      "url": "http://ig.fhir.de/igs/medication/ValueSet/AlgorithmLanguageCodesDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "ValueSet-DosageDoseQuantityDE.json",
+      "sha256": "caeac443315dd9901cb0c3adfb9280cbe83fddf082ddec509f86686847e8749a",
+      "url": "http://ig.fhir.de/igs/medication/ValueSet/DosageDoseQuantityDE",
+      "version": "1.0.7"
+    },
+    {
+      "file": "ValueSet-DosageUnitsOfTimeDgMP.json",
+      "sha256": "c3464b9f5aa2078ccfd0ac284660016d6f85b77902fe31bb605b272e56ac8c22",
+      "url": "http://ig.fhir.de/igs/medication/ValueSet/DosageUnitsOfTimeDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "ValueSet-EDQMUnitOfPresentation.json",
+      "sha256": "7dbfbeaf0c4319a360c4ff319cdcae05c64ab469699a454e03ea73ff1562ecfc",
+      "url": "http://ig.fhir.de/igs/medication/ValueSet/EDQMUnitOfPresentation",
+      "version": "1.0.7"
+    },
+    {
+      "file": "ValueSet-PeriodUnitsOfTimeDgMP.json",
+      "sha256": "09023de5d131fb299d526567446a263036f869766812193c532161a258a779cd",
+      "url": "http://ig.fhir.de/igs/medication/ValueSet/PeriodUnitsOfTimeDgMP",
+      "version": "1.0.7"
+    },
+    {
+      "file": "ValueSet-TimingWhenDgMP.json",
+      "sha256": "fbd5ee51863b38cdb1be7f97996abdbba0affff46f2a4a85a3801b83f43306e7",
+      "url": "http://ig.fhir.de/igs/medication/ValueSet/TimingWhenDgMP",
+      "version": "1.0.7"
+    }
+  ],
+  "limitations": [
+    "Offline terminology: language codes and periodUnit may be unverified.",
+    "Dosage text generation/comparison is not implemented by this command.",
+    "MustSupport software capabilities cannot be proven from a single resource.",
+    "No complete KBV prescription, clinical assessment or gematik service conformance."
+  ],
+  "additionalSources": [
+    "https://packages.simplifier.net/kbv.all.st-combined/1.12.0",
+    "https://hl7.org/fhir/uv/xver-r5.r4/0.0.1-snapshot-2/StructureDefinition-ext-R5-MedicationRequest.renderedDosageInstruction.json"
+  ]
+}

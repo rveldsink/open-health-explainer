@@ -1,0 +1,13 @@
+{
+  "purpose": "Intake template, not FHIR input",
+  "provider": "",
+  "contact_optional": "",
+  "profileCanonicalAndVersion": "",
+  "packageVersions": [],
+  "syntheticReproductionFile": "",
+  "expectedBehavior": "",
+  "observedBehavior": "",
+  "releaseConfirmed": false,
+  "containsPersonalOrConfidentialData": "unknown",
+  "notes": "Only supplied with explicit release; no automatic anonymization."
+}

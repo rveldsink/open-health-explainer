@@ -1,0 +1,8 @@
+{
+  "resourceType": "ImmunizationRecommendation",
+  "id": "synthetic-learning",
+  "patient": {
+    "reference": "Patient/synthetic"
+  },
+  "date": "2026-10-07"
+}

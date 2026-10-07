@@ -1,0 +1,17 @@
+{
+  "resourceType": "ImmunizationRecommendation",
+  "id": "synthetic-learning",
+  "patient": {
+    "reference": "Patient/synthetic"
+  },
+  "recommendation": [
+    {
+      "targetDisease": {
+        "text": "Synthetische Testkrankheit, keine Impfempfehlung"
+      },
+      "forecastStatus": {
+        "text": "Nur Strukturtest"
+      }
+    }
+  ]
+}

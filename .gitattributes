@@ -1,0 +1,3 @@
+# Preserve the exact bytes of version-pinned official resources and test fixtures.
+src/ohe/specs/**/definitions/*.json -text
+examples/**/*.json -text

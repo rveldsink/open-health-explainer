@@ -1,5 +1,29 @@
 # Open Health Explainer
 
+## Current tested scope (7 October 2026)
+
+- MedicationRequestDgMP 1.0.7: 26 synthetic cases and two revalidated corrections.
+- ImmunizationRecommendation R4 4.0.1: eight synthetic cases and one revalidated correction.
+- 39 automated tests pass. These are separate from the real HL7 Java Validator runs.
+- Reports preserve findings and link explicit invariant IDs to official definitions.
+- Offline terminology coverage is incomplete; no-errors-reported is not full conformance.
+- No clinical recommendation engine, national vaccination schedule checking or proven market demand.
+- Optional local AI adapter exists, but no real-model evaluation has been performed.
+
+Published reports: [medication](https://www.veldsink.com/FHIR/prueflabor/index.html)
+and [immunization](https://www.veldsink.com/FHIR/prueflabor/immunization.html).
+The browser displays saved runs; new validation runs use the local CLI.
+
+Reproduce the unit tests with `python -m pip install -e . pytest`, then `python -m pytest`.
+For real validation, follow the version-pinned setup in
+[medication specifications](docs/medication-specification.md),
+[workflow instructions](docs/workflow.md) and [immunization](docs/immunization.md).
+Java/validator binaries and the full dependency cache are not bundled.
+
+New research mode: `ohe workflow ... --spec immunization` checks the FHIR R4
+ImmunizationRecommendation base structure. See [scope and examples](docs/immunization.md).
+It does not implement vaccine forecasting or national vaccination schedules.
+
 Open-source prototype for reproducible analysis of HL7 FHIR validation failures.
 
 **Initial concept and implementation:** Albert Gert Jan Veldsink  
@@ -142,3 +166,15 @@ The goal is that organizations can analyze large datasets directly from their ex
 
 This is an experimental developer tool, not a medical device and not an official HL7 product.
 FHIR and HL7 are trademarks of HL7 International.
+
+## Version-pinned German medication profile
+
+The `validate-medication` command runs the HL7 Java Validator against official
+MedicationRequestDgMP 1.0.7 definitions. See [scope, usage and limitations](docs/medication-specification.md).
+This offline mode never claims complete conformance.
+
+## Local investigation workflow
+
+`ohe workflow` validates folders in one Java process, explains findings and compares
+reviewed corrections. See [German usage guide](docs/workflow.md). Includes 26
+synthetic cases and an optional local AI adapter (not enabled by default).
