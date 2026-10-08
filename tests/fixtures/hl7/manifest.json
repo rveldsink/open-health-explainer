@@ -1,0 +1,14 @@
+[
+  {
+    "file": "operationoutcome-r4.json",
+    "source": "https://hl7.org/fhir/R4/operationoutcome-example.json",
+    "sha256": "3b8883805d05a008a65ed600535de1fb195ef4720667bd276e7abc6d8de3ab80",
+    "release": "4.0.1"
+  },
+  {
+    "file": "operationoutcome-r5.json",
+    "source": "https://hl7.org/fhir/R5/operationoutcome-example.json",
+    "sha256": "09699907d095655bb7bc19bc6904d6dec35d69cc02e30265411b5201cd552e70",
+    "release": "5.0.0"
+  }
+]

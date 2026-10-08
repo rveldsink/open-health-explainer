@@ -17,6 +17,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+markers = ["integration: opt-in real HL7 Java validator (may download packages)"]
 
 [tool.setuptools.package-data]
 ohe = ["workflow.html", "specs/*/*.json", "specs/*/definitions/*.json"]
