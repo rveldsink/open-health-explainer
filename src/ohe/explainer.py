@@ -34,6 +34,9 @@ def explain_issue(issue: Dict[str, Any]) -> Dict[str, Any]:
     if not result.get("path") and len(expressions) == 1:
         result["path"] = expressions[0]
         result["pathSource"] = "expression"
+    if not result.get("path") and len(issue.get("location", [])) == 1:
+        result["path"] = issue["location"][0]
+        result["pathSource"] = "location"
     for key in ("messageIds", "profileContexts", "validatorSources", "rawIssue"):
         result[key] = issue.get(key)
     return result

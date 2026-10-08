@@ -77,7 +77,59 @@ def main():
     workflow_p.add_argument("--timeout", type=int, default=180)
     workflow_p.add_argument("--spec", choices=("medication", "immunization"), default="medication",
                             help="Explicit profile mode; immunization checks R4 structure, not vaccine schedules")
+    pinned_p = subs.add_parser("validate-pinned", help="General version-pinned validation with evidence")
+    pinned_p.add_argument("resource")
+    pinned_p.add_argument("--validator", required=True)
+    pinned_p.add_argument("--config", required=True)
+    pinned_p.add_argument("--output", required=True)
+    pinned_p.add_argument("--java", default="java")
+    pinned_p.add_argument("--cache-home")
+    pinned_p.add_argument("--timeout", type=int, default=180)
+    demo_p = subs.add_parser("serve-demo", help="Loopback-only synthetic FHIR R4 fixture")
+    demo_p.add_argument("--port", type=int, default=8765)
+    negative_p = subs.add_parser("profile-cases", help="Negative candidates from a resolved snapshot")
+    negative_p.add_argument("resource")
+    negative_p.add_argument("profile")
+    negative_p.add_argument("--value-set", action="append", default=[])
+    negative_p.add_argument("--output", required=True)
     args = parser.parse_args()
+
+    if args.cmd == "serve-demo":
+        from .demo_server import serve_demo
+        try:
+            serve_demo(args.port)
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        return
+    if args.cmd == "validate-pinned":
+        from .validation import validate_pinned
+        try:
+            report = validate_pinned(args.resource, args.validator, args.config, args.output,
+                                     args.java, args.timeout, args.cache_home)
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        print(json.dumps({k: report[k] for k in ("status", "coverage", "inputSha256")}, indent=2))
+        raise SystemExit({"failed": 1, "not-checkable": 2, "no-errors-reported": 3}[report["status"]])
+    if args.cmd == "profile-cases":
+        from .profile_tests import generate_profile_cases
+        try:
+            read = lambda path: json.loads(Path(path).read_text(encoding="utf-8-sig"))
+            value_sets = {}
+            for path in args.value_set:
+                value = read(path)
+                value_sets[value["url"]] = value
+                if value.get("version"):
+                    value_sets[value["url"] + "|" + value["version"]] = value
+            result = generate_profile_cases(read(args.resource), read(args.profile), value_sets)
+            output = Path(args.output)
+            output.mkdir(parents=True, exist_ok=False)
+            for case in result["cases"]:
+                (output / (case["name"] + ".json")).write_text(json.dumps(case["resource"], indent=2), encoding="utf-8")
+            (output / "manifest.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            parser.error(str(error))
+        print(json.dumps({"candidates": len(result["cases"]), "skipped": len(result["skipped"])}))
+        return
 
     if args.cmd == "workflow":
         from .workflow import run_batch

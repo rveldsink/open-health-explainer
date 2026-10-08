@@ -118,3 +118,33 @@ def test_engine_timeout_keeps_evidence(tmp_path,monkeypatch):
     result=engine.validate_many({"good":source},tmp_path/"run",jar)
     assert result["good"]["status"] == "not-checkable"
     assert (tmp_path/"run/inputs/good.json").read_bytes()==source.read_bytes()
+
+
+def test_local_ai_transport_is_optional_and_advisory(monkeypatch):
+    import io
+    import urllib.request
+    findings = [{"id":"F001", "ruleEvidence":[{"key":"rule-1"}]}]
+    suggestion = {"findingId":"F001", "hypothesis":"Test hypothesis",
+                  "action":"Review source", "ruleKeys":["rule-1"]}
+    requests = []
+    class Opener:
+        def open(self, request, timeout):
+            requests.append(request)
+            assert request.full_url == "http://127.0.0.1:11434/api/chat"
+            assert timeout == 120
+            payload = json.loads(request.data)
+            assert payload["model"] == "installed-local-model"
+            assert json.loads(payload["messages"][1]["content"]) == findings
+            return io.BytesIO(json.dumps({"message":{"content":json.dumps({"suggestions":[suggestion]})}}).encode())
+    def build(*handlers):
+        assert any(isinstance(h, urllib.request.ProxyHandler) and h.proxies == {} for h in handlers)
+        redirect = next(h for h in handlers if isinstance(h, urllib.request.HTTPRedirectHandler))
+        assert redirect.redirect_request(None) is None
+        return Opener()
+    monkeypatch.setattr(urllib.request, "build_opener", build)
+    assert advise(findings)["status"] == "disabled"
+    assert requests == []
+    result = advise(findings, model="installed-local-model")
+    assert result["status"] == "advisory-unverified"
+    assert result["suggestions"] == [suggestion]
+    assert len(requests) == 1

@@ -178,3 +178,14 @@ This offline mode never claims complete conformance.
 `ohe workflow` validates folders in one Java process, explains findings and compares
 reviewed corrections. See [German usage guide](docs/workflow.md). Includes 26
 synthetic cases and an optional local AI adapter (not enabled by default).
+
+## Versioned validation and local FHIR demo
+
+A first platform foundation adds general `validate-pinned`, snapshot-based
+`profile-cases`, and a loopback-only `serve-demo` command. The demo serves two
+synthetic R4 Patients, read/search interactions and an accurate CapabilityStatement.
+It is not a production server or a full FHIR implementation.
+
+See [platform foundation, examples and coverage matrix](docs/platform-foundation.md)
+for runnable commands, source links, test scope and remaining work. Existing
+medication/immunization workflows and optional local AI advice are preserved.
