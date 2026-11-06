@@ -10,7 +10,10 @@ PROFILE_UNAVAILABLE = {
 
 
 def explain_issue(issue: Dict[str, Any]) -> Dict[str, Any]:
-    message = issue.get("diagnostics") or issue.get("details") or ""
+    # diagnostics may contain only source coordinates (e.g. "[8,6]").
+    # The normalized details field contains the validator's readable message.
+    details = issue.get("details")
+    message = details if isinstance(details, str) and details.strip() else issue.get("diagnostics") or ""
     result = explain(message)
     ids = set(issue.get("messageIds", []))
     result["classificationBasis"] = "text-heuristic" if result["matched"] else "unclassified"
@@ -34,7 +37,7 @@ def explain_issue(issue: Dict[str, Any]) -> Dict[str, Any]:
     if not result.get("path") and len(expressions) == 1:
         result["path"] = expressions[0]
         result["pathSource"] = "expression"
-    for key in ("messageIds", "profileContexts", "validatorSources", "rawIssue"):
+    for key in ("diagnostics", "messageIds", "profileContexts", "validatorSources", "rawIssue"):
         result[key] = issue.get(key)
     return result
 
