@@ -9,7 +9,7 @@ def _fingerprint(issue: Dict[str, Any]) -> str:
     return "|".join([
         str(issue.get("errorId", "OHE-UNKNOWN")),
         str(issue.get("category", "unknown")),
-        str(issue.get("message", "")),
+        str(issue.get("message") or issue.get("rawMessage") or ""),
     ])
 
 
@@ -22,7 +22,7 @@ def cluster_reports(reports: Iterable[Dict[str, Any]]) -> List[Dict[str, Any]]:
             key = _fingerprint(issue)
             counts[key] += 1
             if len(examples[key]) < 3:
-                examples[key].append(report.get("file"))
+                examples[key].append(report.get("file") or report.get("source"))
 
     clusters = []
     for key, count in counts.most_common():

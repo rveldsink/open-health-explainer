@@ -178,3 +178,10 @@ This offline mode never claims complete conformance.
 `ohe workflow` validates folders in one Java process, explains findings and compares
 reviewed corrections. See [German usage guide](docs/workflow.md). Includes 26
 synthetic cases and an optional local AI adapter (not enabled by default).
+
+## Validator compatibility updates
+
+Readable OperationOutcome descriptions and infrastructure coverage gaps are preserved;
+validator messages can be clustered without merging different unclassified findings.
+See [compatibility status and integration gates](docs/compatibility-status.md).
+Java integration tests are opt-in and skipped tests do not imply engine compatibility.

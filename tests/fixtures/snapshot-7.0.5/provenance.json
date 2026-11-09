@@ -1,0 +1,54 @@
+{
+  "source": "FHIR/fhir-test-cases",
+  "status": "Upstream regression fixtures, not locally executed Java outputs",
+  "files": [
+    {
+      "path": "outcomes/java/R4.structuremap-dependent-input-no-mode-base.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/0de4ad6c8cc9951f802029f95312db5b507670b8/validator/outcomes/java/R4.structuremap-dependent-input-no-mode-base.json"
+    },
+    {
+      "path": "outcomes/java/R4.structuremap-import-no-value-base.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/0de4ad6c8cc9951f802029f95312db5b507670b8/validator/outcomes/java/R4.structuremap-import-no-value-base.json"
+    },
+    {
+      "path": "structuremap-dependent-input-no-mode.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/0de4ad6c8cc9951f802029f95312db5b507670b8/validator/structuremap-dependent-input-no-mode.json"
+    },
+    {
+      "path": "structuremap-import-no-value.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/0de4ad6c8cc9951f802029f95312db5b507670b8/validator/structuremap-import-no-value.json"
+    },
+    {
+      "path": "outcomes/java/R4.valueset-expansion-parameter-empty-base.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/outcomes/java/R4.valueset-expansion-parameter-empty-base.json"
+    },
+    {
+      "path": "outcomes/java/R4.valueset-expansion-parameter-name-ok-base.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/outcomes/java/R4.valueset-expansion-parameter-name-ok-base.json"
+    },
+    {
+      "path": "outcomes/java/R4.valueset-expansion-parameter-no-name-base.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/outcomes/java/R4.valueset-expansion-parameter-no-name-base.json"
+    },
+    {
+      "path": "outcomes/java/R4.valueset-parameter-extension-name-no-value-base.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/outcomes/java/R4.valueset-parameter-extension-name-no-value-base.json"
+    },
+    {
+      "path": "valueset-expansion-parameter-empty.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/valueset-expansion-parameter-empty.json"
+    },
+    {
+      "path": "valueset-expansion-parameter-name-ok.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/valueset-expansion-parameter-name-ok.json"
+    },
+    {
+      "path": "valueset-expansion-parameter-no-name.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/valueset-expansion-parameter-no-name.json"
+    },
+    {
+      "path": "valueset-parameter-extension-name-no-value.json",
+      "source": "https://github.com/FHIR/fhir-test-cases/blob/dbfe45176c5e0453c187759a8ee2d20b21a782d6/validator/valueset-parameter-extension-name-no-value.json"
+    }
+  ]
+}

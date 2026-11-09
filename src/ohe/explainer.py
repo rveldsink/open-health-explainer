@@ -10,12 +10,23 @@ PROFILE_UNAVAILABLE = {
 
 
 def explain_issue(issue: Dict[str, Any]) -> Dict[str, Any]:
-    message = issue.get("diagnostics") or issue.get("details") or ""
+    # diagnostics may contain only source coordinates (e.g. "[8,6]").
+    # The normalized details field contains the validator's readable message.
+    details = issue.get("details")
+    message = details if isinstance(details, str) and details.strip() else issue.get("diagnostics") or ""
     result = explain(message)
     ids = set(issue.get("messageIds", []))
     result["classificationBasis"] = "text-heuristic" if result["matched"] else "unclassified"
     result["coverageGap"] = False
-    if ids & PROFILE_UNAVAILABLE:
+    if issue.get("code") in ("timeout", "transient"):
+        result.update(matched=True, errorId="OHE-COVERAGE-002", category="infrastructure",
+                      fixPolicy="manual-review", coverageGap=True,
+                      classificationBasis="operationoutcome-code",
+                      explanation_de="Ein vorübergehendes Infrastrukturproblem verhindert eine vollständige Prüfung.",
+                      explanation_en="A transient infrastructure failure prevents complete validation.",
+                      suggestedAction_de="Serververfügbarkeit prüfen und erneut validieren. Keine Patientendaten als Fehlerkorrektur ändern.",
+                      suggestedAction_en="Check server availability and validate again. Do not alter patient data to fix infrastructure failures.")
+    elif ids & PROFILE_UNAVAILABLE:
         result.update(matched=True, errorId="OHE-COVERAGE-001", category="profile-unavailable",
                       fixPolicy="manual-review", coverageGap=True,
                       explanation_de="Ein angegebenes Profil konnte nicht geprüft werden. Die Prüfung ist unvollständig.",
@@ -34,7 +45,7 @@ def explain_issue(issue: Dict[str, Any]) -> Dict[str, Any]:
     if not result.get("path") and len(expressions) == 1:
         result["path"] = expressions[0]
         result["pathSource"] = "expression"
-    for key in ("messageIds", "profileContexts", "validatorSources", "rawIssue"):
+    for key in ("diagnostics", "messageIds", "profileContexts", "validatorSources", "rawIssue"):
         result[key] = issue.get(key)
     return result
 
