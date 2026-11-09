@@ -18,7 +18,15 @@ def explain_issue(issue: Dict[str, Any]) -> Dict[str, Any]:
     ids = set(issue.get("messageIds", []))
     result["classificationBasis"] = "text-heuristic" if result["matched"] else "unclassified"
     result["coverageGap"] = False
-    if ids & PROFILE_UNAVAILABLE:
+    if issue.get("code") in ("timeout", "transient"):
+        result.update(matched=True, errorId="OHE-COVERAGE-002", category="infrastructure",
+                      fixPolicy="manual-review", coverageGap=True,
+                      classificationBasis="operationoutcome-code",
+                      explanation_de="Ein vorübergehendes Infrastrukturproblem verhindert eine vollständige Prüfung.",
+                      explanation_en="A transient infrastructure failure prevents complete validation.",
+                      suggestedAction_de="Serververfügbarkeit prüfen und erneut validieren. Keine Patientendaten als Fehlerkorrektur ändern.",
+                      suggestedAction_en="Check server availability and validate again. Do not alter patient data to fix infrastructure failures.")
+    elif ids & PROFILE_UNAVAILABLE:
         result.update(matched=True, errorId="OHE-COVERAGE-001", category="profile-unavailable",
                       fixPolicy="manual-review", coverageGap=True,
                       explanation_de="Ein angegebenes Profil konnte nicht geprüft werden. Die Prüfung ist unvollständig.",
